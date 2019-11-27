@@ -1,0 +1,12 @@
+#myElement {
+    color: red;
+    list-style: none;
+}
+
+#myElement li button {
+    border: 1px solid brown;
+    width: 40px;
+    height: 25px;
+    border-radius: 4px;
+    background-color: #fff;
+}

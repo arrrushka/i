@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <tittle>
+            LOLKEKCHEBUREK
+        </tittle>
+        <link href="./style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <ul id="myElement">
+            <li>LALALA</li>
+        </ul>
+
+        <script>
+             async function removeMyItemById(itemId){
+                var response = await fetch(`http://localhost:8080/delete/${itemId}`); 
+                var data = await response.json();
+               
+                if (data && data.message === "successfully deleted") {
+                    await getData();
+                    alert("харашо");
+                } else {
+                    alert("не харашо");
+                }
+            }
+            async function getData(){
+                var response = await fetch("http://localhost:8080/getSomeData");
+                var data = await response.json();
+                var el = document.getElementById("myElement")
+                el.innerHTML = "";
+
+                for(var i = 0; i < data.length; i++){
+                    el.innerHTML +=`
+                    <li> ${data[i].movie_name} ${data[i].year_released}
+                        <button onclick="removeMyItemById(${data[i].movie_id})">kill</button>
+                    </li>`;
+                }
+
+                (err, res) => {
+                if (err) {
+                response.json(err);
+            } else {
+                response.json({ message: "gg" });
+            }}
+            }
+            getData();
+        </script>
+    </body>
+</html>
